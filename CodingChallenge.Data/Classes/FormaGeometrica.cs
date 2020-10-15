@@ -136,8 +136,8 @@ namespace CodingChallenge.Data.Classes
                 // FOOTER
                 sb.Append("TOTAL:<br/>");
                 sb.Append(numeroCuadrados + numeroCirculos + numeroTriangulos + numeroTrapecios + numeroRectangulos + " " + (idioma == Castellano ? "formas" : idioma == Portugues ? "formas" : "shapes") + " ");
-                sb.Append((idioma == Castellano ? "Perimetro " : idioma == Portugues ? "Perímetro " : "Perimeter ") + (perimetroCuadrados + perimetroTriangulos + perimetroCirculos + perimetroTrapecios + perimetroRectangulos).ToString("#.##") + " ");
-                sb.Append("Area " + (areaCuadrados + areaCirculos + areaTriangulos + areaTrapecios + areaRectangulos).ToString("#.##"));
+                sb.Append((idioma == Castellano ? "Perimetro " : idioma == Portugues ? "Perímetro " : "Perimeter ") + (perimetroCuadrados + perimetroTriangulos + perimetroCirculos + perimetroTrapecios + perimetroRectangulos).ToString("#.##").Replace('.', ',') + " ");
+                sb.Append("Area " + (areaCuadrados + areaCirculos + areaTriangulos + areaTrapecios + areaRectangulos).ToString("#.##").Replace('.', ','));
             }
 
             return sb.ToString();
@@ -148,11 +148,12 @@ namespace CodingChallenge.Data.Classes
             if (cantidad > 0)
             {
                 if (idioma == Castellano)
-                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area:#.##} | Perimetro {perimetro:#.##} <br/>";
+                    return  $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area.ToString("#.##").Replace('.', ',')} | Perimetro {perimetro.ToString("#.##").Replace('.', ',')} <br/>";
+                
                 else if (idioma == Portugues)
-                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area:#.##} | Perímetro {perimetro:#.##} <br/>";
+                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area.ToString("#.##").Replace('.',',')} | Perímetro {perimetro.ToString("#.##").Replace('.', ',')} <br/>";
                 else
-                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area:#.##} | Perimeter {perimetro:#.##} <br/>";
+                    return $"{cantidad} {TraducirForma(tipo, cantidad, idioma)} | Area {area.ToString("#.##").Replace('.', ',')} | Perimeter {perimetro.ToString("#.##").Replace('.', ',')} <br/>";
             }
 
             return string.Empty;
